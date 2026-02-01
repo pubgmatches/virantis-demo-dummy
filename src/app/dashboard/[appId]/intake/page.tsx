@@ -101,7 +101,7 @@ export default function IntakeDetailsPage() {
         <div className="min-h-screen bg-deep-navy">
             <DashboardNav />
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                 {/* Back Link */}
                 <Link href={`/dashboard/${appId}`} className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
                     <ArrowLeft className="w-4 h-4" />
@@ -114,7 +114,7 @@ export default function IntakeDetailsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-8"
                 >
-                    <h1 className="text-2xl font-semibold text-white mb-2">
+                    <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">
                         Intake Sources
                     </h1>
                     <p className="text-zinc-400">
@@ -122,9 +122,9 @@ export default function IntakeDetailsPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Main Content */}
-                    <div className="col-span-2 space-y-6">
+                    <div className="lg:col-span-2 space-y-6">
                         {/* Architecture Diagram */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -328,8 +328,8 @@ export default function IntakeDetailsPage() {
                                     <div
                                         key={intake.id}
                                         className={`p-3 rounded-lg border transition-colors ${index === 0
-                                                ? 'bg-cyan/5 border-cyan/20'
-                                                : 'bg-zinc-800/30 border-zinc-800 hover:border-zinc-700'
+                                            ? 'bg-cyan/5 border-cyan/20'
+                                            : 'bg-zinc-800/30 border-zinc-800 hover:border-zinc-700'
                                             } cursor-pointer`}
                                     >
                                         <div className="flex items-center gap-2 mb-1">

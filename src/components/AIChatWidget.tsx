@@ -201,7 +201,7 @@ export function AIChatWidget({ context }: AIChatWidgetProps) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed bottom-[72px] sm:bottom-24 right-2 sm:right-6 left-2 sm:left-auto z-50 w-auto sm:w-[400px] h-[calc(100vh-100px)] max-h-[550px] sm:h-[550px] bg-dark-blue-gray border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+                        className="fixed bottom-[72px] sm:bottom-24 right-2 sm:right-6 left-2 sm:left-auto z-50 w-auto sm:w-[400px] h-[60vh] max-h-[450px] sm:max-h-[550px] sm:h-[550px] bg-dark-blue-gray border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 py-3 bg-midnight border-b border-zinc-800">
