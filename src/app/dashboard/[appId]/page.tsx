@@ -275,77 +275,124 @@ export default function AppDetailPage() {
                         {app.assessments.map((assess, index) => (
                             <div
                                 key={assess.id}
-                                className={`grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-zinc-800/50 hover:bg-white/5 transition-colors ${selectedAssessments.includes(assess.id) ? 'bg-cyan/5 border-cyan/20' : ''
+                                className={`px-4 sm:px-6 py-4 border-b border-zinc-800/50 hover:bg-white/5 transition-colors ${selectedAssessments.includes(assess.id) ? 'bg-cyan/5 border-cyan/20' : ''
                                     }`}
                             >
-                                {/* Checkbox */}
-                                <div className="col-span-1">
-                                    <button
-                                        onClick={() => toggleAssessmentSelection(assess.id)}
-                                        className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedAssessments.includes(assess.id)
-                                            ? 'bg-cyan border-cyan'
-                                            : 'border-zinc-600 hover:border-zinc-400'
-                                            }`}
-                                    >
-                                        {selectedAssessments.includes(assess.id) && (
-                                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
-                                            </svg>
-                                        )}
-                                    </button>
-                                </div>
-
-                                {/* Date */}
-                                <div className="col-span-2">
-                                    <p className="text-white text-sm">{formatDate(assess.date)}</p>
-                                    <p className="text-xs text-zinc-500">{assess.duration}</p>
-                                </div>
-
-                                {/* Intake */}
-                                <div className="col-span-2 flex items-center gap-2">
-                                    {assess.intakeType === 'image' ? (
-                                        <ImageIcon className="w-4 h-4 text-cyan" />
-                                    ) : (
-                                        <GitBranch className="w-4 h-4 text-purple" />
-                                    )}
-                                    <span className="text-zinc-400 text-sm truncate">{assess.intakeFile}</span>
-                                </div>
-
-                                {/* Methodology */}
-                                <div className="col-span-2">
-                                    <span className="text-zinc-400 text-sm">{assess.methodology}</span>
-                                </div>
-
-                                {/* Threats */}
-                                <div className="col-span-2">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-white font-medium">{assess.threats.total}</span>
-                                        <span className="text-xs text-zinc-500">
-                                            ({assess.threats.critical}C / {assess.threats.high}H / {assess.threats.medium}M)
+                                {/* Mobile Layout */}
+                                <div className="md:hidden">
+                                    <div className="flex items-start justify-between gap-3 mb-3">
+                                        <div className="flex items-center gap-3">
+                                            <button
+                                                onClick={() => toggleAssessmentSelection(assess.id)}
+                                                className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${selectedAssessments.includes(assess.id)
+                                                    ? 'bg-cyan border-cyan'
+                                                    : 'border-zinc-600 hover:border-zinc-400'
+                                                    }`}
+                                            >
+                                                {selectedAssessments.includes(assess.id) && (
+                                                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                                                    </svg>
+                                                )}
+                                            </button>
+                                            <div>
+                                                <p className="text-white text-sm font-medium">{formatDate(assess.date)}</p>
+                                                <p className="text-xs text-zinc-500">{assess.duration}</p>
+                                            </div>
+                                        </div>
+                                        <span className={`badge ${getRiskBadge(assess.riskLevel)}`}>
+                                            {assess.riskLevel.charAt(0).toUpperCase() + assess.riskLevel.slice(1)}
                                         </span>
                                     </div>
-                                    {assess.changes && (
-                                        <p className="text-xs text-zinc-600 mt-1">{assess.changes}</p>
-                                    )}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-4 text-sm text-zinc-400">
+                                            <span>{assess.threats.total} threats</span>
+                                            <span className="text-xs">({assess.threats.critical}C / {assess.threats.high}H)</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Link href={`/dashboard/${app.id}/${assess.id}`}>
+                                                <Button variant="secondary" size="sm" icon={<Eye className="w-3 h-3" />}>
+                                                    View
+                                                </Button>
+                                            </Link>
+                                            <button className="p-2 rounded-lg hover:bg-red-500/10 text-zinc-500 hover:text-red-500 transition-colors">
+                                                <Trash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {/* Risk */}
-                                <div className="col-span-1">
-                                    <span className={`badge ${getRiskBadge(assess.riskLevel)}`}>
-                                        {assess.riskLevel.charAt(0).toUpperCase() + assess.riskLevel.slice(1)}
-                                    </span>
-                                </div>
+                                {/* Desktop Layout */}
+                                <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                                    {/* Checkbox */}
+                                    <div className="col-span-1">
+                                        <button
+                                            onClick={() => toggleAssessmentSelection(assess.id)}
+                                            className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedAssessments.includes(assess.id)
+                                                ? 'bg-cyan border-cyan'
+                                                : 'border-zinc-600 hover:border-zinc-400'
+                                                }`}
+                                        >
+                                            {selectedAssessments.includes(assess.id) && (
+                                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                                                </svg>
+                                            )}
+                                        </button>
+                                    </div>
 
-                                {/* Actions */}
-                                <div className="col-span-2 flex items-center gap-2">
-                                    <Link href={`/dashboard/${app.id}/${assess.id}`}>
-                                        <Button variant="secondary" size="sm" icon={<Eye className="w-3 h-3" />}>
-                                            View
-                                        </Button>
-                                    </Link>
-                                    <button className="p-2 rounded-lg hover:bg-red-500/10 text-zinc-500 hover:text-red-500 transition-colors">
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
+                                    {/* Date */}
+                                    <div className="col-span-2">
+                                        <p className="text-white text-sm">{formatDate(assess.date)}</p>
+                                        <p className="text-xs text-zinc-500">{assess.duration}</p>
+                                    </div>
+
+                                    {/* Intake */}
+                                    <div className="col-span-2 flex items-center gap-2">
+                                        {assess.intakeType === 'image' ? (
+                                            <ImageIcon className="w-4 h-4 text-cyan" />
+                                        ) : (
+                                            <GitBranch className="w-4 h-4 text-purple" />
+                                        )}
+                                        <span className="text-zinc-400 text-sm truncate">{assess.intakeFile}</span>
+                                    </div>
+
+                                    {/* Methodology */}
+                                    <div className="col-span-2">
+                                        <span className="text-zinc-400 text-sm">{assess.methodology}</span>
+                                    </div>
+
+                                    {/* Threats */}
+                                    <div className="col-span-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-white font-medium">{assess.threats.total}</span>
+                                            <span className="text-xs text-zinc-500">
+                                                ({assess.threats.critical}C / {assess.threats.high}H / {assess.threats.medium}M)
+                                            </span>
+                                        </div>
+                                        {assess.changes && (
+                                            <p className="text-xs text-zinc-600 mt-1">{assess.changes}</p>
+                                        )}
+                                    </div>
+
+                                    {/* Risk */}
+                                    <div className="col-span-1">
+                                        <span className={`badge ${getRiskBadge(assess.riskLevel)}`}>
+                                            {assess.riskLevel.charAt(0).toUpperCase() + assess.riskLevel.slice(1)}
+                                        </span>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="col-span-2 flex items-center gap-2">
+                                        <Link href={`/dashboard/${app.id}/${assess.id}`}>
+                                            <Button variant="secondary" size="sm" icon={<Eye className="w-3 h-3" />}>
+                                                View
+                                            </Button>
+                                        </Link>
+                                        <button className="p-2 rounded-lg hover:bg-red-500/10 text-zinc-500 hover:text-red-500 transition-colors">
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

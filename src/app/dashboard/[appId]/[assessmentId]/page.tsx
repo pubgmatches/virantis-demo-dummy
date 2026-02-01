@@ -20,6 +20,7 @@ import {
 import { DashboardNav } from '@/components/DashboardNav';
 import { ThreatDashboard } from '@/components/ThreatDashboard';
 import { AttackGraphViz } from '@/components/AttackGraphViz';
+import { AIChatWidget } from '@/components/AIChatWidget';
 import { JiraExportModal } from '@/components/JiraExportModal';
 import { Toast } from '@/components/ui/Toast';
 import { generateReport } from '@/lib/generateReport';
@@ -137,7 +138,7 @@ export default function AssessmentDetailPage() {
         <div className="min-h-screen bg-deep-navy">
             <DashboardNav />
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                 {/* Back Link */}
                 <Link href={`/dashboard/${appId}`} className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
                     <ArrowLeft className="w-4 h-4" />
@@ -150,12 +151,12 @@ export default function AssessmentDetailPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-8"
                 >
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                         <div>
-                            <h1 className="text-2xl font-semibold text-white mb-2">
+                            <h1 className="text-xl sm:text-2xl font-semibold text-white mb-2">
                                 Assessment Details
                             </h1>
-                            <div className="flex items-center gap-4 text-sm text-zinc-400">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-zinc-400">
                                 <span className="flex items-center gap-1">
                                     <Calendar className="w-4 h-4" />
                                     {formatDate(assessment.date)}
@@ -170,7 +171,7 @@ export default function AssessmentDetailPage() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 sm:gap-3 mt-2 sm:mt-0">
                             <Button
                                 variant="secondary"
                                 icon={<RefreshCw className="w-4 h-4" />}
@@ -190,8 +191,8 @@ export default function AssessmentDetailPage() {
                     className="mb-8"
                 >
                     <Card className="p-6">
-                        <h2 className="text-lg font-semibold text-white mb-4">Intake Source</h2>
-                        <div className="grid grid-cols-2 gap-6">
+                        <h2 className="text-base sm:text-lg font-semibold text-white mb-4">Intake Source</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Diagram Preview */}
                             <div className="bg-midnight rounded-lg border border-zinc-800 p-4">
                                 <div className="aspect-video bg-zinc-900 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
@@ -246,7 +247,7 @@ export default function AssessmentDetailPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="grid grid-cols-4 gap-4 mb-8"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8"
                 >
                     <StatCard
                         title="Total Threats"
@@ -310,6 +311,9 @@ export default function AssessmentDetailPage() {
                     onClose={() => setToast(null)}
                 />
             )}
+
+            {/* AI Chat Widget */}
+            <AIChatWidget context={{ type: 'assessment', appName: app.name }} />
         </div>
     );
 }

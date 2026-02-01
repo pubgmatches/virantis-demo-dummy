@@ -175,7 +175,7 @@ export function AIChatWidget({ context }: AIChatWidgetProps) {
             {/* Floating Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all ${isOpen
+                className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all ${isOpen
                     ? 'bg-zinc-800 hover:bg-zinc-700'
                     : 'bg-gradient-to-br from-cyan via-purple to-pink hover:scale-110'
                     }`}
@@ -201,7 +201,7 @@ export function AIChatWidget({ context }: AIChatWidgetProps) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed bottom-20 sm:bottom-24 right-2 sm:right-6 left-2 sm:left-auto z-50 w-auto sm:w-[400px] h-[70vh] sm:h-[550px] bg-dark-blue-gray border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+                        className="fixed bottom-[72px] sm:bottom-24 right-2 sm:right-6 left-2 sm:left-auto z-50 w-auto sm:w-[400px] h-[calc(100vh-100px)] max-h-[550px] sm:h-[550px] bg-dark-blue-gray border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 py-3 bg-midnight border-b border-zinc-800">
