@@ -40,35 +40,36 @@ export default function AnalyzePage() {
             </div>
 
             {/* Navigation */}
-            <nav className="relative z-10 container mx-auto px-6 py-6">
+            <nav className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-6">
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2">
-                        <Shield className="w-8 h-8 text-cyan" />
-                        <span className="text-xl font-semibold">Virantis</span>
+                        <Shield className="w-7 h-7 sm:w-8 sm:h-8 text-cyan" />
+                        <span className="text-lg sm:text-xl font-semibold">Virantis</span>
                     </Link>
                     <Link
                         href="/dashboard"
                         className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        Back to Dashboard
+                        <span className="hidden sm:inline">Back to Dashboard</span>
+                        <span className="sm:hidden">Back</span>
                     </Link>
                 </div>
             </nav>
 
             {/* Content */}
-            <section className="relative z-10 container mx-auto px-6 py-12">
+            <section className="relative z-10 container mx-auto px-4 sm:px-6 py-6 sm:py-12">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-12"
+                    className="text-center mb-6 sm:mb-12"
                 >
-                    <h1 className="text-4xl font-semibold mb-4">
+                    <h1 className="text-2xl sm:text-4xl font-semibold mb-3 sm:mb-4">
                         <span className="text-white">Start Your </span>
                         <span className="text-cyan">Threat Analysis</span>
                     </h1>
-                    <p className="text-zinc-400 max-w-xl mx-auto">
+                    <p className="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base px-2">
                         Provide your architecture inputs and our AI agents will automatically
                         identify components, data flows, and potential security threats.
                     </p>
@@ -83,7 +84,7 @@ export default function AnalyzePage() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="max-w-3xl mx-auto mt-12"
                 >
-                    <div className="grid grid-cols-4 gap-4 text-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-center">
                         {processSteps.map((step, index) => (
                             <div key={step.title} className="p-4">
                                 <div className="text-3xl font-light text-cyan mb-2">{index + 1}</div>

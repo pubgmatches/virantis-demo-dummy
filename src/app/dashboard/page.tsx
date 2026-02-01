@@ -89,9 +89,9 @@ export default function DashboardPage() {
         <div className="min-h-screen bg-deep-navy">
             <DashboardNav />
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
                     <div>
                         <motion.h1
                             initial={{ opacity: 0, y: -10 }}
@@ -102,7 +102,7 @@ export default function DashboardPage() {
                         </motion.h1>
                         <p className="text-zinc-400">Here&apos;s an overview of your security assessments</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                         <Button
                             variant="secondary"
                             icon={<FileText className="w-4 h-4" />}
@@ -123,7 +123,7 @@ export default function DashboardPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="grid grid-cols-4 gap-4 mb-8"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8"
                 >
                     <StatCard
                         title="Total Applications"
@@ -150,9 +150,9 @@ export default function DashboardPage() {
                 </motion.div>
 
                 {/* Main Grid: 3 columns */}
-                <div className="grid grid-cols-12 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Left Column: Applications + Remediation */}
-                    <div className="col-span-5 space-y-6">
+                    <div className="lg:col-span-5 space-y-6">
                         {/* Applications List */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +189,7 @@ export default function DashboardPage() {
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex items-center gap-4">
+                                                    <div className="hidden sm:flex items-center gap-4">
                                                         <div className="text-center">
                                                             <p className="text-lg font-semibold text-white">{app.totalThreats}</p>
                                                             <p className="text-xs text-zinc-500">Threats</p>
@@ -218,7 +218,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Center Column: Timeline + Pending Approvals */}
-                    <div className="col-span-4 space-y-6">
+                    <div className="lg:col-span-4 space-y-6">
                         {/* Risk Timeline */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -239,7 +239,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Right Column: Scorecard + Recent Activity */}
-                    <div className="col-span-3 space-y-6">
+                    <div className="lg:col-span-3 space-y-6">
                         {/* Security Scorecard */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

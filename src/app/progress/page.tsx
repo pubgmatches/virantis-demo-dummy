@@ -22,22 +22,22 @@ export default function ProgressPage() {
             </div>
 
             {/* Navigation */}
-            <nav className="relative z-10 container mx-auto px-6 py-6">
+            <nav className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-6">
                 <Link href="/" className="flex items-center gap-2 w-fit">
-                    <Shield className="w-8 h-8 text-cyan" />
-                    <span className="text-xl font-semibold">Virantis</span>
+                    <Shield className="w-7 h-7 sm:w-8 sm:h-8 text-cyan" />
+                    <span className="text-lg sm:text-xl font-semibold">Virantis</span>
                 </Link>
             </nav>
 
             {/* Content */}
-            <section className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12">
+            <section className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
+                    className="text-center mb-8 sm:mb-16"
                 >
-                    <h1 className="text-4xl font-semibold mb-4">
+                    <h1 className="text-2xl sm:text-4xl font-semibold mb-3 sm:mb-4">
                         <span className="text-white">Analyzing Your </span>
                         <span className="text-cyan">Architecture</span>
                     </h1>

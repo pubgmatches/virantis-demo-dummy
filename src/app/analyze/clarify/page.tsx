@@ -146,10 +146,10 @@ export default function ClarifyPage() {
     };
 
     return (
-        <main className="min-h-screen bg-deep-navy py-12 px-6">
+        <main className="min-h-screen bg-deep-navy py-6 sm:py-12 px-4 sm:px-6">
             <div className="container mx-auto max-w-4xl">
                 {/* Back Link */}
-                <Link href="/analyze" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8">
+                <Link href="/analyze" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-4 sm:mb-8">
                     <ArrowLeft className="w-4 h-4" />
                     Back to Intake
                 </Link>
@@ -158,13 +158,13 @@ export default function ClarifyPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-8"
+                    className="text-center mb-6 sm:mb-8"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-purple/10 border border-purple/20 rounded-full mb-4">
                         <Bot className="w-4 h-4 text-purple" />
                         <span className="text-sm text-purple">Clarification Agent</span>
                     </div>
-                    <h1 className="text-3xl font-semibold text-white mb-2">
+                    <h1 className="text-xl sm:text-3xl font-semibold text-white mb-2">
                         Let&apos;s Clarify a Few Things
                     </h1>
                     <p className="text-zinc-400">
@@ -202,7 +202,7 @@ export default function ClarifyPage() {
 
                 {/* Chat Area */}
                 <Card className="p-0 overflow-hidden mb-6">
-                    <div className="h-[400px] overflow-y-auto p-6 space-y-4">
+                    <div className="h-[50vh] sm:h-[400px] overflow-y-auto p-4 sm:p-6 space-y-4">
                         {messages.map((msg) => (
                             <motion.div
                                 key={msg.id}
@@ -211,8 +211,8 @@ export default function ClarifyPage() {
                                 className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                             >
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user'
-                                        ? 'bg-purple/20'
-                                        : 'bg-gradient-to-br from-cyan/20 to-purple/20'
+                                    ? 'bg-purple/20'
+                                    : 'bg-gradient-to-br from-cyan/20 to-purple/20'
                                     }`}>
                                     {msg.role === 'user' ? (
                                         <User className="w-4 h-4 text-purple" />
@@ -220,11 +220,11 @@ export default function ClarifyPage() {
                                         <Bot className="w-4 h-4 text-cyan" />
                                     )}
                                 </div>
-                                <div className={`max-w-[70%] px-4 py-3 rounded-2xl ${msg.role === 'user'
-                                        ? 'bg-purple/20 text-white rounded-br-sm'
-                                        : msg.isQuestion
-                                            ? 'bg-cyan/10 border border-cyan/20 text-white rounded-bl-sm'
-                                            : 'bg-zinc-800/50 text-zinc-200 rounded-bl-sm'
+                                <div className={`max-w-[85%] sm:max-w-[70%] px-3 sm:px-4 py-2 sm:py-3 rounded-2xl ${msg.role === 'user'
+                                    ? 'bg-purple/20 text-white rounded-br-sm'
+                                    : msg.isQuestion
+                                        ? 'bg-cyan/10 border border-cyan/20 text-white rounded-bl-sm'
+                                        : 'bg-zinc-800/50 text-zinc-200 rounded-bl-sm'
                                     }`}>
                                     {msg.isQuestion && (
                                         <div className="flex items-center gap-1 text-cyan text-xs mb-2">

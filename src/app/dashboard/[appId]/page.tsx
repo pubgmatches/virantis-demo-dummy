@@ -146,7 +146,7 @@ export default function AppDetailPage() {
         <div className="min-h-screen bg-deep-navy">
             <DashboardNav />
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                 {/* Back Link */}
                 <Link href="/dashboard" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
                     <ArrowLeft className="w-4 h-4" />
@@ -157,7 +157,7 @@ export default function AppDetailPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-start justify-between mb-8"
+                    className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6 sm:mb-8"
                 >
                     <div className="flex items-start gap-4">
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan/20 to-purple/20 flex items-center justify-center">
@@ -172,7 +172,7 @@ export default function AppDetailPage() {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                         <Button
                             variant="secondary"
                             icon={<RefreshCw className="w-4 h-4" />}
@@ -193,7 +193,7 @@ export default function AppDetailPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="grid grid-cols-4 gap-4 mb-8"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8"
                 >
                     <Card className="p-4">
                         <div className="flex items-center justify-between">
@@ -261,7 +261,7 @@ export default function AppDetailPage() {
 
                     <Card className="p-0 overflow-hidden">
                         {/* Table Header */}
-                        <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-zinc-800 text-sm font-medium text-zinc-400 bg-midnight">
+                        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 border-b border-zinc-800 text-sm font-medium text-zinc-400 bg-midnight">
                             <div className="col-span-1"></div>
                             <div className="col-span-2">Date</div>
                             <div className="col-span-2">Intake</div>

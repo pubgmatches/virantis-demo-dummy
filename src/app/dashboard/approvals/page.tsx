@@ -176,7 +176,7 @@ export default function ApprovalsPage() {
         <div className="min-h-screen bg-deep-navy">
             <DashboardNav />
 
-            <main className="container mx-auto px-6 py-8">
+            <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                 {/* Back Link */}
                 <Link href="/dashboard" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6">
                     <ArrowLeft className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default function ApprovalsPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center justify-between mb-8"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8"
                 >
                     <div>
                         <h1 className="text-2xl font-semibold text-white mb-1 flex items-center gap-3">
@@ -210,7 +210,7 @@ export default function ApprovalsPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="flex gap-2 mb-6"
+                    className="flex gap-2 mb-6 overflow-x-auto pb-2"
                 >
                     {[
                         { key: 'all', label: 'All Changes' },
@@ -220,9 +220,9 @@ export default function ApprovalsPage() {
                         <button
                             key={tab.key}
                             onClick={() => setFilter(tab.key as 'all' | 'assess' | 'skip')}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${filter === tab.key
-                                    ? 'bg-cyan/20 text-cyan border border-cyan/30'
-                                    : 'bg-zinc-800/50 text-zinc-400 border border-zinc-800 hover:border-zinc-700'
+                            className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${filter === tab.key
+                                ? 'bg-cyan/20 text-cyan border border-cyan/30'
+                                : 'bg-zinc-800/50 text-zinc-400 border border-zinc-800 hover:border-zinc-700'
                                 }`}
                         >
                             {tab.label}
@@ -249,7 +249,7 @@ export default function ApprovalsPage() {
                                         onClick={() => setExpandedId(isExpanded ? null : approval.id)}
                                         className="p-6 cursor-pointer hover:bg-white/5 transition-colors"
                                     >
-                                        <div className="flex items-start justify-between">
+                                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                                             <div className="flex items-start gap-4">
                                                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${sourceColors[approval.source]}`}>
                                                     <Icon className="w-5 h-5" />
@@ -275,7 +275,7 @@ export default function ApprovalsPage() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex items-center gap-2 sm:gap-3 mt-2 sm:mt-0">
                                                 {approval.recommendation === 'assess' ? (
                                                     <span className="badge badge-high flex items-center gap-1">
                                                         <AlertTriangle className="w-3 h-3" />

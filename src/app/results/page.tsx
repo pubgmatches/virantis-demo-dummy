@@ -84,11 +84,11 @@ export default function ResultsPage() {
             </div>
 
             {/* Navigation */}
-            <nav className="relative z-10 container mx-auto px-6 py-6">
+            <nav className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-6">
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2">
-                        <Shield className="w-8 h-8 text-cyan" />
-                        <span className="text-xl font-semibold">Virantis</span>
+                        <Shield className="w-7 h-7 sm:w-8 sm:h-8 text-cyan" />
+                        <span className="text-lg sm:text-xl font-semibold">Virantis</span>
                     </Link>
                     <Link
                         href="/analyze"
@@ -101,7 +101,7 @@ export default function ResultsPage() {
             </nav>
 
             {/* Content */}
-            <section className="relative z-10 container mx-auto px-6 py-8">
+            <section className="relative z-10 container mx-auto px-4 sm:px-6 py-4 sm:py-8">
                 <motion.div
                     key={view}
                     initial={{ opacity: 0, x: view === 'graph' ? 20 : -20 }}

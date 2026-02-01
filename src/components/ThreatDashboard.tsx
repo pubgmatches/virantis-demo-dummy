@@ -91,7 +91,7 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8"
             >
-                <h1 className="text-3xl font-semibold mb-2">
+                <h1 className="text-xl sm:text-3xl font-semibold mb-2">
                     <span className="text-white">Threat Analysis: </span>
                     <span className="text-cyan">{application.name}</span>
                 </h1>
@@ -103,7 +103,7 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="grid grid-cols-4 gap-4 mb-8"
+                className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8"
             >
                 <StatCard
                     title="Total Threats"
@@ -135,9 +135,9 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="flex items-center justify-between mb-6"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-6"
             >
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     <Button variant="primary" icon={<Network className="w-4 h-4" />} onClick={onViewGraph}>
                         View Attack Graph
                     </Button>
@@ -166,7 +166,7 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                 className="card p-0 overflow-hidden"
             >
                 {/* Table Header */}
-                <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-zinc-800 text-sm font-medium text-zinc-400">
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 border-b border-zinc-800 text-sm font-medium text-zinc-400">
                     <div className="col-span-2">Severity</div>
                     <div className="col-span-3">Threat Name</div>
                     <div className="col-span-2">Category</div>
@@ -180,14 +180,14 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                         {/* Row */}
                         <div
                             onClick={() => toggleThreat(threat.id)}
-                            className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-zinc-800/50 hover:bg-white/5 cursor-pointer transition-colors items-center"
+                            className="md:grid md:grid-cols-12 gap-4 px-4 sm:px-6 py-4 border-b border-zinc-800/50 hover:bg-white/5 cursor-pointer transition-colors items-center"
                         >
-                            <div className="col-span-2">
+                            <div className="md:col-span-2 flex md:block items-center justify-between mb-2 md:mb-0">
                                 <span className={`badge ${getSeverityBadge(threat.severity)}`}>
                                     {threat.severity.charAt(0).toUpperCase() + threat.severity.slice(1)}
                                 </span>
                             </div>
-                            <div className="col-span-3 text-white font-medium flex items-center gap-2">
+                            <div className="md:col-span-3 text-white font-medium flex items-center gap-2 mb-2 md:mb-0">
                                 {threat.name}
                                 {expandedThreat === threat.id ? (
                                     <ChevronUp className="w-4 h-4 text-zinc-500" />
@@ -195,15 +195,15 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                                     <ChevronDown className="w-4 h-4 text-zinc-500" />
                                 )}
                             </div>
-                            <div className="col-span-2">
+                            <div className="hidden md:block md:col-span-2">
                                 <span className={`badge ${threat.category === 'Agentic' ? 'badge-info' : 'bg-purple/15 text-purple'}`}>
                                     {getCategoryLabel(threat.category)}
                                 </span>
                             </div>
-                            <div className="col-span-3 text-zinc-400">
+                            <div className="hidden md:block md:col-span-3 text-zinc-400">
                                 {getComponentName(threat.affectedComponent)}
                             </div>
-                            <div className="col-span-2 text-zinc-500 text-sm">
+                            <div className="hidden md:block md:col-span-2 text-zinc-500 text-sm">
                                 {threat.source}
                             </div>
                         </div>
@@ -219,7 +219,7 @@ export function ThreatDashboard({ onViewGraph, onExportPdf, onCreateTicket }: Th
                                     className="overflow-hidden"
                                 >
                                     <div className="px-6 py-6 bg-midnight border-b border-zinc-800">
-                                        <div className="grid grid-cols-2 gap-8">
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                                             {/* Description & Mitigation */}
                                             <div>
                                                 <h4 className="text-white font-medium mb-2">Description</h4>

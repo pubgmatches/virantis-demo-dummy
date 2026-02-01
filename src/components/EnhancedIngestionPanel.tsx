@@ -141,7 +141,7 @@ export function EnhancedIngestionPanel({ onContinue, isLoading = false }: Enhanc
             </p>
 
             {/* Source Selection */}
-            <div className="grid grid-cols-5 gap-3 mb-8">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3 mb-6 sm:mb-8">
                 {intakeSources.map((source) => (
                     <motion.button
                         key={source.id}
@@ -149,8 +149,8 @@ export function EnhancedIngestionPanel({ onContinue, isLoading = false }: Enhanc
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         className={`relative p-4 rounded-xl border-2 transition-all text-center ${selectedSources.includes(source.id)
-                                ? 'border-cyan bg-cyan/10'
-                                : 'border-zinc-800 bg-midnight hover:border-zinc-700'
+                            ? 'border-cyan bg-cyan/10'
+                            : 'border-zinc-800 bg-midnight hover:border-zinc-700'
                             } ${!source.available ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                         disabled={!source.available}
                     >

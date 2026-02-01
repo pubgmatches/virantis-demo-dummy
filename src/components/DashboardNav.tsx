@@ -109,13 +109,13 @@ export function DashboardNav() {
 
     return (
         <nav className="sticky top-0 z-50 bg-deep-navy/80 backdrop-blur-xl border-b border-zinc-800">
-            <div className="container mx-auto px-6">
-                <div className="flex items-center justify-between h-16">
+            <div className="container mx-auto px-4 sm:px-6">
+                <div className="flex items-center justify-between h-14 sm:h-16">
                     {/* Left: Logo + Breadcrumbs */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 sm:gap-6">
                         <Link href="/dashboard" className="flex items-center gap-2">
-                            <Shield className="w-7 h-7 text-cyan" />
-                            <span className="text-lg font-semibold">Virantis</span>
+                            <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-cyan" />
+                            <span className="text-base sm:text-lg font-semibold">Virantis</span>
                         </Link>
 
                         {/* Breadcrumbs */}
