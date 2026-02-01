@@ -1,0 +1,291 @@
+{
+    "application": {
+        "name": "FinTravel AI Agent",
+        "description": "A financial travel booking agent powered by AI that helps users book travel arrangements, manage expenses, and handle payments through intelligent automation.",
+        "version": "1.0.0",
+        "analyzedAt": "2026-02-01T14:30:00Z"
+    },
+    "components": [
+        {
+            "id": "comp-001",
+            "name": "User Interface",
+            "type": "external_entity",
+            "description": "React web application for user interaction",
+            "technology": "React, TypeScript",
+            "trustLevel": "untrusted"
+        },
+        {
+            "id": "comp-002",
+            "name": "Orchestrator Agent",
+            "type": "process",
+            "description": "Central AI coordination agent that manages task execution and agent communication",
+            "technology": "Python, LangChain",
+            "trustLevel": "trusted"
+        },
+        {
+            "id": "comp-003",
+            "name": "Email Fetcher Agent",
+            "type": "process",
+            "description": "Reads and processes user emails for travel context and confirmation",
+            "technology": "Python, IMAP",
+            "trustLevel": "semi-trusted"
+        },
+        {
+            "id": "comp-004",
+            "name": "Payment API",
+            "type": "process",
+            "description": "Handles payment processing and financial transactions",
+            "technology": "Node.js, Stripe SDK",
+            "trustLevel": "trusted"
+        },
+        {
+            "id": "comp-005",
+            "name": "Booking Database",
+            "type": "data_store",
+            "description": "PostgreSQL database storing reservation and booking data",
+            "technology": "PostgreSQL",
+            "trustLevel": "trusted"
+        },
+        {
+            "id": "comp-006",
+            "name": "Memory Store",
+            "type": "data_store",
+            "description": "Vector database for agent memory and context retention",
+            "technology": "Pinecone",
+            "trustLevel": "trusted"
+        }
+    ],
+    "dataFlows": [
+        {
+            "id": "flow-001",
+            "source": "comp-001",
+            "target": "comp-002",
+            "description": "User requests and interaction data",
+            "dataType": "User Input",
+            "protocol": "HTTPS",
+            "encrypted": true
+        },
+        {
+            "id": "flow-002",
+            "source": "comp-003",
+            "target": "comp-002",
+            "description": "Parsed email content and confirmations",
+            "dataType": "Email Data",
+            "protocol": "Internal API",
+            "encrypted": true
+        },
+        {
+            "id": "flow-003",
+            "source": "comp-002",
+            "target": "comp-004",
+            "description": "Payment instructions and transaction requests",
+            "dataType": "Payment Data",
+            "protocol": "Internal API",
+            "encrypted": true
+        },
+        {
+            "id": "flow-004",
+            "source": "comp-002",
+            "target": "comp-005",
+            "description": "Booking records and reservations",
+            "dataType": "Booking Data",
+            "protocol": "PostgreSQL",
+            "encrypted": true
+        },
+        {
+            "id": "flow-005",
+            "source": "comp-002",
+            "target": "comp-006",
+            "description": "Agent memory and context updates",
+            "dataType": "Vector Embeddings",
+            "protocol": "gRPC",
+            "encrypted": true
+        },
+        {
+            "id": "flow-006",
+            "source": "comp-006",
+            "target": "comp-002",
+            "description": "Retrieved context and memory",
+            "dataType": "Context Data",
+            "protocol": "gRPC",
+            "encrypted": true
+        },
+        {
+            "id": "flow-007",
+            "source": "comp-003",
+            "target": "external",
+            "description": "Email server connection",
+            "dataType": "Email Protocol",
+            "protocol": "IMAPS",
+            "encrypted": true
+        },
+        {
+            "id": "flow-008",
+            "source": "comp-004",
+            "target": "external",
+            "description": "External payment provider",
+            "dataType": "Payment Protocol",
+            "protocol": "HTTPS",
+            "encrypted": true
+        }
+    ],
+    "attackPath": {
+        "name": "Indirect Prompt Injection via Email",
+        "description": "Attacker crafts malicious email content that gets processed by Email Fetcher Agent, poisoning the Orchestrator Agent's context and potentially triggering unauthorized payment actions.",
+        "stages": [
+            {
+                "step": 1,
+                "source": "Internet",
+                "target": "comp-003",
+                "action": "Attacker sends crafted email with hidden prompt injection"
+            },
+            {
+                "step": 2,
+                "source": "comp-003",
+                "target": "comp-002",
+                "action": "Malicious content passed to Orchestrator as trusted context"
+            },
+            {
+                "step": 3,
+                "source": "comp-002",
+                "target": "comp-004",
+                "action": "Orchestrator executes unauthorized payment based on injected instructions"
+            }
+        ],
+        "impact": "Unauthorized financial transactions, data exfiltration",
+        "likelihood": "Medium-High"
+    },
+    "threats": [
+        {
+            "id": "T001",
+            "name": "Memory Poisoning",
+            "category": "Agentic",
+            "source": "OWASP-ASI-001",
+            "severity": "critical",
+            "affectedComponent": "comp-006",
+            "description": "An attacker can inject malicious data into the agent's long-term memory (vector store), causing the agent to make decisions based on poisoned context. This can lead to persistent compromise of agent behavior.",
+            "dread": {
+                "damage": 9,
+                "reproducibility": 7,
+                "exploitability": 6,
+                "affectedUsers": 9,
+                "discoverability": 5,
+                "total": 36
+            },
+            "mitigation": "Implement memory validation and sanitization. Use signed memory entries with integrity checks. Regularly audit and prune vector store for anomalies.",
+            "status": "open"
+        },
+        {
+            "id": "T002",
+            "name": "Indirect Prompt Injection",
+            "category": "Agentic",
+            "source": "OWASP-ASI-002",
+            "severity": "critical",
+            "affectedComponent": "comp-003",
+            "description": "Malicious instructions embedded in emails processed by the Email Fetcher Agent can manipulate the Orchestrator's behavior. The agent may execute unintended actions believing them to be legitimate user requests.",
+            "dread": {
+                "damage": 10,
+                "reproducibility": 8,
+                "exploitability": 7,
+                "affectedUsers": 9,
+                "discoverability": 6,
+                "total": 40
+            },
+            "mitigation": "Implement strict input validation for all external data sources. Use content filtering and anomaly detection. Maintain separate trust contexts for user input vs. external data.",
+            "status": "open"
+        },
+        {
+            "id": "T003",
+            "name": "SQL Injection",
+            "category": "STRIDE-T",
+            "source": "STRIDE-T",
+            "severity": "high",
+            "affectedComponent": "comp-005",
+            "description": "User-supplied input in booking queries could be used to inject malicious SQL commands, potentially allowing unauthorized access to booking records or data manipulation.",
+            "dread": {
+                "damage": 8,
+                "reproducibility": 6,
+                "exploitability": 5,
+                "affectedUsers": 7,
+                "discoverability": 6,
+                "total": 32
+            },
+            "mitigation": "Use parameterized queries exclusively. Implement input validation and sanitization. Apply principle of least privilege to database accounts.",
+            "status": "open"
+        },
+        {
+            "id": "T004",
+            "name": "Session Hijacking",
+            "category": "STRIDE-S",
+            "source": "STRIDE-S",
+            "severity": "high",
+            "affectedComponent": "comp-001",
+            "description": "An attacker could steal or forge user session tokens to impersonate legitimate users, gaining unauthorized access to their travel bookings and payment methods.",
+            "dread": {
+                "damage": 8,
+                "reproducibility": 5,
+                "exploitability": 6,
+                "affectedUsers": 8,
+                "discoverability": 5,
+                "total": 32
+            },
+            "mitigation": "Implement secure session management with HttpOnly cookies. Use short session lifetimes with refresh tokens. Enable session binding to device fingerprints.",
+            "status": "open"
+        },
+        {
+            "id": "T005",
+            "name": "Resource Overload",
+            "category": "Agentic",
+            "source": "OWASP-ASI-004",
+            "severity": "medium",
+            "affectedComponent": "comp-002",
+            "description": "An attacker could craft requests that cause the Orchestrator Agent to consume excessive resources (API calls, compute, memory), leading to denial of service or high operational costs.",
+            "dread": {
+                "damage": 6,
+                "reproducibility": 7,
+                "exploitability": 6,
+                "affectedUsers": 7,
+                "discoverability": 6,
+                "total": 32
+            },
+            "mitigation": "Implement rate limiting and request throttling. Set resource quotas and budgets for agent operations. Monitor for anomalous resource usage patterns.",
+            "status": "open"
+        },
+        {
+            "id": "T006",
+            "name": "Sensitive Data Exposure",
+            "category": "STRIDE-I",
+            "source": "STRIDE-I",
+            "severity": "medium",
+            "affectedComponent": "comp-002",
+            "description": "The Orchestrator Agent may inadvertently expose sensitive user data (PII, payment info) in logs, error messages, or through agent-to-agent communication.",
+            "dread": {
+                "damage": 7,
+                "reproducibility": 5,
+                "exploitability": 4,
+                "affectedUsers": 8,
+                "discoverability": 4,
+                "total": 28
+            },
+            "mitigation": "Implement data classification and masking. Use structured logging with PII filtering. Encrypt all inter-agent communications.",
+            "status": "open"
+        }
+    ],
+    "summary": {
+        "totalThreats": 6,
+        "critical": 2,
+        "high": 2,
+        "medium": 2,
+        "low": 0,
+        "topRisks": [
+            "Indirect Prompt Injection via untrusted email content",
+            "Memory Poisoning of vector store context"
+        ],
+        "recommendations": [
+            "Implement strict input validation for all external data sources",
+            "Add content filtering and anomaly detection for email processing",
+            "Enable memory integrity verification in vector store",
+            "Review and harden inter-agent communication security"
+        ]
+    }
+}

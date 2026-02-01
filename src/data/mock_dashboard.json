@@ -1,0 +1,229 @@
+{
+    "user": {
+        "id": "user-1",
+        "name": "Alex Chen",
+        "email": "alex.chen@virantis.io",
+        "role": "Security Engineer",
+        "avatar": null
+    },
+    "notifications": [
+        {
+            "id": "notif-1",
+            "type": "critical",
+            "title": "New Critical Threat Detected",
+            "message": "Memory Poisoning vulnerability found in FinTravel AI Agent",
+            "timestamp": "2024-01-28T14:30:00Z",
+            "read": false,
+            "appId": "app-1"
+        },
+        {
+            "id": "notif-2",
+            "type": "info",
+            "title": "Assessment Complete",
+            "message": "PaymentGateway API assessment finished with 4 threats",
+            "timestamp": "2024-01-27T10:15:00Z",
+            "read": true,
+            "appId": "app-2"
+        },
+        {
+            "id": "notif-3",
+            "type": "warning",
+            "title": "Re-assessment Recommended",
+            "message": "AuthService hasn't been assessed in 30 days",
+            "timestamp": "2024-01-26T09:00:00Z",
+            "read": false,
+            "appId": "app-3"
+        }
+    ],
+    "stats": {
+        "totalApps": 3,
+        "assessmentsThisMonth": 8,
+        "criticalIssues": 4,
+        "avgRiskScore": "High"
+    },
+    "applications": [
+        {
+            "id": "app-1",
+            "name": "FinTravel AI Agent",
+            "description": "A financial travel booking agent powered by AI that helps users book travel arrangements, manage expenses, and handle payments through intelligent automation.",
+            "createdAt": "2023-11-15T10:00:00Z",
+            "lastAssessed": "2024-01-28T14:30:00Z",
+            "riskLevel": "critical",
+            "totalThreats": 6,
+            "intakeType": "image",
+            "intakeFile": "fintravel_architecture.png",
+            "assessments": [
+                {
+                    "id": "assess-1-1",
+                    "date": "2024-01-28T14:30:00Z",
+                    "duration": "47s",
+                    "methodology": "STRIDE + PASTA + OWASP Agentic",
+                    "intakeType": "image",
+                    "intakeFile": "fintravel_architecture_v2.png",
+                    "status": "complete",
+                    "riskLevel": "critical",
+                    "threats": {
+                        "total": 6,
+                        "critical": 2,
+                        "high": 2,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "+2 new threats since last assessment"
+                },
+                {
+                    "id": "assess-1-2",
+                    "date": "2024-01-15T11:20:00Z",
+                    "duration": "52s",
+                    "methodology": "STRIDE + PASTA",
+                    "intakeType": "image",
+                    "intakeFile": "fintravel_architecture_v1.png",
+                    "status": "complete",
+                    "riskLevel": "high",
+                    "threats": {
+                        "total": 5,
+                        "critical": 1,
+                        "high": 2,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "+1 new threat since last assessment"
+                },
+                {
+                    "id": "assess-1-3",
+                    "date": "2023-12-20T09:00:00Z",
+                    "duration": "45s",
+                    "methodology": "STRIDE",
+                    "intakeType": "image",
+                    "intakeFile": "fintravel_architecture_v0.png",
+                    "status": "complete",
+                    "riskLevel": "medium",
+                    "threats": {
+                        "total": 4,
+                        "critical": 0,
+                        "high": 2,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "Initial assessment"
+                }
+            ]
+        },
+        {
+            "id": "app-2",
+            "name": "PaymentGateway API",
+            "description": "Secure payment processing API handling credit card transactions, fraud detection, and PCI-DSS compliance for e-commerce platforms.",
+            "createdAt": "2023-10-01T08:00:00Z",
+            "lastAssessed": "2024-01-21T16:45:00Z",
+            "riskLevel": "high",
+            "totalThreats": 4,
+            "intakeType": "image",
+            "intakeFile": "payment_gateway.png",
+            "assessments": [
+                {
+                    "id": "assess-2-1",
+                    "date": "2024-01-21T16:45:00Z",
+                    "duration": "38s",
+                    "methodology": "STRIDE + PASTA",
+                    "intakeType": "image",
+                    "intakeFile": "payment_gateway_v2.png",
+                    "status": "complete",
+                    "riskLevel": "high",
+                    "threats": {
+                        "total": 4,
+                        "critical": 1,
+                        "high": 2,
+                        "medium": 1,
+                        "low": 0
+                    },
+                    "changes": "No change from last assessment"
+                },
+                {
+                    "id": "assess-2-2",
+                    "date": "2024-01-05T14:00:00Z",
+                    "duration": "41s",
+                    "methodology": "STRIDE",
+                    "intakeType": "image",
+                    "intakeFile": "payment_gateway_v1.png",
+                    "status": "complete",
+                    "riskLevel": "high",
+                    "threats": {
+                        "total": 4,
+                        "critical": 1,
+                        "high": 2,
+                        "medium": 1,
+                        "low": 0
+                    },
+                    "changes": "Initial assessment"
+                }
+            ]
+        },
+        {
+            "id": "app-3",
+            "name": "AuthService",
+            "description": "Centralized authentication and authorization service supporting OAuth 2.0, SAML, and MFA for enterprise applications.",
+            "createdAt": "2023-09-15T12:00:00Z",
+            "lastAssessed": "2024-01-25T10:30:00Z",
+            "riskLevel": "medium",
+            "totalThreats": 3,
+            "intakeType": "image",
+            "intakeFile": "auth_service.png",
+            "assessments": [
+                {
+                    "id": "assess-3-1",
+                    "date": "2024-01-25T10:30:00Z",
+                    "duration": "35s",
+                    "methodology": "STRIDE + PASTA",
+                    "intakeType": "image",
+                    "intakeFile": "auth_service_v3.png",
+                    "status": "complete",
+                    "riskLevel": "medium",
+                    "threats": {
+                        "total": 3,
+                        "critical": 0,
+                        "high": 1,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "-1 threat remediated"
+                },
+                {
+                    "id": "assess-3-2",
+                    "date": "2024-01-10T09:15:00Z",
+                    "duration": "33s",
+                    "methodology": "STRIDE",
+                    "intakeType": "image",
+                    "intakeFile": "auth_service_v2.png",
+                    "status": "complete",
+                    "riskLevel": "high",
+                    "threats": {
+                        "total": 4,
+                        "critical": 0,
+                        "high": 2,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "+1 new threat since last assessment"
+                },
+                {
+                    "id": "assess-3-3",
+                    "date": "2023-12-01T11:00:00Z",
+                    "duration": "30s",
+                    "methodology": "STRIDE",
+                    "intakeType": "image",
+                    "intakeFile": "auth_service_v1.png",
+                    "status": "complete",
+                    "riskLevel": "medium",
+                    "threats": {
+                        "total": 3,
+                        "critical": 0,
+                        "high": 1,
+                        "medium": 2,
+                        "low": 0
+                    },
+                    "changes": "Initial assessment"
+                }
+            ]
+        }
+    ]
+}
